@@ -1,0 +1,1 @@
+myApp.controller("statusController",["$scope","$location","Authentication",function(o,t,n){o.logout=function(){n.logout(),t.path("/login")}}]);

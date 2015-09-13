@@ -1,0 +1,29 @@
+<div>
+	<p>Page Under Construction | Use with Caution !!!</p>
+	<div ng-hide="passwordFormShow">
+		<a ng-click="passChangeForm()">Change Password</a>
+	</div>
+
+	<div ng-show="passwordFormShow">
+		<form name="changeForm" ng-submit="changePassword()" novalidate>
+			<p class="validationsuccess" ng-show="changeSuccess">{{ changeSuccess }}</p>
+			<p class="error validationerror" ng-show="changeFailed">{{ changeFailed }}</p>
+
+			<p class="error validationerror" ng-show="changeForm.email.$invalid && 
+			changeForm.email.$touched">Must be a valid Email ID</p>
+			<input type="text" name="email" placeholder="Enter Your Email" ng-model="user.email" ng-required="true"/>
+
+			<p class="error validationerror" ng-show="changeForm.oldPassword.$invalid && 
+			changeForm.oldPassword.$touched">Must be a valid Password</p>
+			<input type="password" name="oldPassword" placeholder="Old Password" ng-model="user.oldPassword" 
+			ng-required="true"/>
+
+			<p class="error validationerror" ng-show="changeForm.newPassword.$invalid && 
+			changeForm.newPassword.$touched">Must be a valid Password</p>
+			<input type="password" name="newPassword" placeholder="New Password" ng-model="user.newPassword" 
+			ng-required="true"/>
+
+			<button type="submit" class="btn" ng-disabled="changeForm.$invalid">Submit</button>
+		</form>
+	</div>
+</div>
