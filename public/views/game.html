@@ -4,7 +4,7 @@
 </div>
 
 <div ng-show="tictactoe">
-	<h2 style="color : #1E9382;font-size: 2em">Tic Tac Toe</h2></br>
+	<h2 style="color : #1E9382;font-size: 2.5em">Tic Tac Toe</h2></br>
 
 	<div ng-hide="multiplayerBegin">
 		<div ng-hide="playerElementSelected || startingGame" class="online">
@@ -33,36 +33,38 @@
 						</div>
 						<div ng-hide="sendingConnect">
 							<p>Incoming Play Request From <span>{{ incomingConnect }}</span></p>
-							<button class="btn tooltip icon ion-thumbsup"
-								ng-click="acceptGameRequest()"><span>Accept</span></button>
-							<button class="btn tooltip icon ion-thumbsdown"
-								ng-click="rejectGameRequest()"><span>Reject</span></button>
+							<button class="btn tooltip icon"
+								ng-click="acceptGameRequest()"><img ng-src="images/icons/check.png">
+								<span>Accept</span></button>
+							<button class="btn tooltip icon"
+								ng-click="rejectGameRequest()"><img ng-src="images/icons/close.png">
+								<span>Reject</span></button>
 						</div>
 					</div>
 				</div>
 				<div ng-show="playerElementSelected">
 					<p>Choose What You Want to Be ?</p>
-					<button class="btn tooltip icon ion-android-close" 
-					ng-click="playerChoice('X')"></button>
-					<button class="btn tooltip icon ion-android-radio-button-off" 
-					ng-click="playerChoice('O')"></button>
+					<button class="btn tooltip icon" 
+					ng-click="playerChoice('X')"><img ng-src="images/icons/close.png"></button>
+					<button class="btn tooltip icon" 
+					ng-click="playerChoice('O')"><img ng-src="images/icons/o.png"></button>
 				</div>
 			</div>
 		</div>
 	</div>
 
 	<div ng-show="multiplayerBegin">
-		<div ng-show="multiplayerBegin" class="online">
-		<h3>Player Scores</h3></br>
+		<div ng-show="multiplayerBegin" class="online"></br>
+		<h3>Player Scores</h3>
 			<div class="small">
 				<div ng-repeat="score in Scores">
 					<div ng-if="score.name == fullname">
-						<p>Name : {{score.name}}</p>
+						<h2>{{score.name}}</h2></br>
 						<p>Wins : {{score.wins}}</p>
 						<p>Lost : {{score.lost}}</p>
 					</div>
 					<div ng-if="score.name == (incomingConnect || sendingConnect)">
-						<p>Name : {{score.name}}</p>
+						<h2>{{score.name}}</h2></br>
 						<p>Wins : {{score.wins}}</p>
 						<p>Lost : {{score.lost}}</p>
 					</div></br>
@@ -107,24 +109,26 @@
 				<div ng-if="playMode == 'X'">
 					<p>Incoming Request From <span>{{ incomingConnect || sendingConnect }}
 					</span>to SWAP <span>X</span> with <span>O</span></p>
-					<button class="btn tooltip icon ion-thumbsup"
-						ng-click="swapConfirm(true)"><span>Accept</span></button>
-					<button class="btn tooltip icon ion-thumbsdown"
-						ng-click="swapConfirm(false)"><span>Reject</span></button>
+					<button class="btn tooltip"
+						ng-click="swapConfirm(true)"><img ng-src="images/icons/check.png">
+						<span>Accept</span></button>
+					<button class="btn tooltip"
+						ng-click="swapConfirm(false)"><img ng-src="images/icons/close.png">
+						<span>Reject</span></button>
 				</div>
 			</div>
 		</div>
 
 			<h3 ng-show="xwin || owin">{{ winner }} - Won the game</h3>
 			<h3 ng-show="draw">Damn !!! its a DRAW...</h3>
-			<button class="btn tooltip icon ion-android-arrow-back" 
-				ng-click="allGame()"><span>all games</span></button>
-				<button class="btn tooltip icon ion-ios-game-controller-b-outline" 
-				ng-click="getScores()"><span>Scores</span></button>
-			<button class="btn tooltip icon ion-arrow-swap" 
-				ng-click="swapRequest()" ng-if="playMode == 'O'"><span>Request-Swap X</span></button>
-			<button class="btn tooltip icon ion-android-refresh" 
-				ng-if="gameFinish == true" ng-click="resetGame()"><span>reset game</span></button>
+			<button class="btn tooltip icon" 
+				ng-click="allGame()"><img ng-src="images/icons/back.png"><span>all games</span></button>
+			<button class="btn tooltip icon" 
+				ng-click="swapRequest()" ng-if="playMode == 'O' && gameFinish == true">
+				<img ng-src="images/icons/swap.png"><span>Request-Swap X</span></button>
+			<button class="btn tooltip icon" 
+				ng-if="gameFinish == true" ng-click="setgameReset()">
+				<img ng-src="images/icons/refresh.png"><span>reset game</span></button>
 		</div>
 
 	</div>
