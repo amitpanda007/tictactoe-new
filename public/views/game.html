@@ -78,7 +78,7 @@
 		<div ng-if="turnTime > 0 && turnTime < 10" class="turn-display">
 			<p>Your Turn Ends in <span>{{ turnTime }}</span>Secs</p>
 		</div>
-		<div ng-hide="swapReq" class="game">
+		<div ng-hide="swapReq || (quitGame || opponentQuit)" class="game">
 			<div class="inner">
 			<a ng-model="one" href="" ng-click="boxClick(1)" ng-class="oneWinner">{{ one }}</a></div>
 			<div class="inner">
@@ -97,6 +97,15 @@
 			<a ng-model="eight" href="" ng-click="boxClick(8)" ng-class="eightWinner">{{ eight }}</a></div>
 			<div class="inner">
 			<a ng-model="nine" href="" ng-click="boxClick(9)" ng-class="nineWinner">{{ nine }}</a></div>
+		</div>
+
+		<div ng-show="quitGame || opponentQuit" class="game">
+			<div class="incoming">
+				<p ng-show="quitGame"><span class="icon ion-sad-outline"></span>
+				Quiting Game ...redirecting to ALL GAMES Page</p>				
+				<p ng-show="opponentQuit"><span class="icon ion-sad-outline"></span>
+				Opponent QUIT...Redirecting to ALL GAMES Page</p>
+			</div>
 		</div>
 			
 		<div ng-show="swapReq" class="game">
@@ -122,7 +131,7 @@
 			<h3 ng-show="xwin || owin">{{ winner }} - Won the game</h3>
 			<h3 ng-show="draw">Damn !!! its a DRAW...</h3>
 			<button class="btn tooltip icon" 
-				ng-click="allGame()"><img ng-src="images/icons/back.png"><span>all games</span></button>
+				ng-click="allGamesSet()"><img ng-src="images/icons/back.png"><span>all games</span></button>
 			<button class="btn tooltip icon" 
 				ng-click="swapRequest()" ng-if="playMode == 'O' && gameFinish == true">
 				<img ng-src="images/icons/swap.png"><span>Request-Swap X</span></button>
